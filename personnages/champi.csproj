@@ -11,8 +11,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{074948EC-E031-47C8-A34D-3D6CAE309DD7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>personnages</RootNamespace>
-    <AssemblyName>personnages</AssemblyName>
+    <RootNamespace>champi</RootNamespace>
+    <AssemblyName>champi</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,12 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Chaman.cs" />
-    <Compile Include="Classes\Mage.cs" />
-    <Compile Include="Classes\Stuff.cs" />
-    <Compile Include="Classes\Thief.cs" />
-    <Compile Include="Classes\Warrior.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Classes\Bolet.cs" />
+    <Compile Include="Classes\Chanterelle.cs" />
+    <Compile Include="Exceptions\EBagIsEmpty.cs" />
+    <Compile Include="Exceptions\EBagIsFull.cs" />
+    <Compile Include="Interfaces\IMushroom.cs" />
+    <Compile Include="Classes\Amanite.cs" />
+    <Compile Include="Picker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,9 +64,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />

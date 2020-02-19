@@ -5,102 +5,120 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using personnages.Classes;
+using champi.Classes;
+using champi.Exceptions;
+using champi.Interfaces;
 
-namespace personnages
+namespace champi
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             //invite a la class de perso
-            Console.WriteLine("Select a class by number :\n" +
-                "1 - Warrior\n" +
-                "2 - Mage\n" +
-                "3 - Chaman\n" +
-                "4 - Thief\n");
+            Console.WriteLine("Bienvenu ami cueilleur\n");
+
+            Random rand = new Random();
 
             //loop tant que la class n'est pas valide
-            string pclass = null;
-            Player player = null;
+            Picker jo = new Picker(rand.Next(12, 21));
+            Console.WriteLine("*Commence la balade* j'ai un sac pour " + jo.GetBagCapacity() + " kilos");
 
-            while (player == null)
+            IMushroom mush = null;
+
+            while (DateTime.Today>DateTime.Today.AddDays(-1))
             {
-                pclass = Console.ReadLine();
-                switch (int.Parse(pclass))
+                switch (rand.Next(1, 4))
                 {
                     case 1:
-                        player = new Warrior();
+                        mush = new Amanite();
                         break;
                     case 2:
-                        player = new Mage();
+                        mush = new Bolet();
                         break;
                     case 3:
-                        player = new Chaman();
-                        break;
-                    case 4:
-                        player = new Thief();
-                        break;
-                    default:
-                        Console.WriteLine("Not a valid class");
+                        mush = new Chanterelle();
                         break;
                 }
-            }
 
-            try
-            {
-                // boucle d'action
-                TheLoop(player);
-            }
-            catch (Exception ex)
-            {
-                // remontée des exceptions
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
+                Console.WriteLine("\nOh! " + mush.GetName() + " en vue ! le ramasse-je ?\n");
 
-            Console.WriteLine("Bye.");
-            Thread.Sleep(2500);
-        }
+                Console.WriteLine("Taper :\n" +
+                    "p - prendre le champi\n" +
+                    "t - jeter un champi\n" +
+                    "e - échanger avec le dernier champi\n" +
+                    "r - je vais plutôt jetter un coup d'oeil au sac\n" +
+                    "q - pour quitter la forêt");
 
-        static void TheLoop(Player player)
-        {
-            bool loop = true;
-            string action = null;
-
-            while (loop)
-            {
-                //invite a l'action
-                Console.WriteLine("Select an action by typing :\n" +
-                    "add - to add an item\n" +
-                    "pop - to remove an item\n" +
-                    "num - count item in bag\n" +
-                    "exit - to stop\n");
-                action = Console.ReadLine();
-
-                switch (action)
+                try
                 {
-                    case "add":
-                        player.AddItem();
-                        break;
+                    switch (Console.ReadLine())
+                    {
+                        case "p":
+                            jo.AddItem(mush);
+                            break;
 
-                    case "pop":
-                        player.PopItem();
-                        break;
+                        case "t":
+                            jo.PopItem();
+                            break;
 
-                    case "num":
-                        player.WeightBag();
-                        break;
+                        case "e":
+                            jo.PopItem();
+                            jo.AddItem(mush);
+                            break;
 
-                    case "exit":
-                        loop = false;
-                        break;
+                        case "r":
+                            jo.PeekBag();
+                            break;
 
-                    default:
-                        Console.WriteLine("Not a valid action");
-                        break;
+                        case "q":
+                            Console.WriteLine("retour à la maison.");
+                            Thread.Sleep(1000);
+                            return;
 
+                        default:
+                            Console.WriteLine("Hein?!");
+                            break;
+                    }
                 }
+                // remontée des exceptions
+                catch (EBagIsFull)
+                {
+                    if (jo.GetBagCapacity() - jo.GetLastMushWeight() + mush.GetWeight() > jo.GetBagCapacity())
+                    {
+                        Console.WriteLine("peu pô\n");
+                        Thread.Sleep(500);
+                        Console.WriteLine("Je rentre.");
+                        Thread.Sleep(1000);
+                        return;
+                    }
+                    Console.WriteLine("Est-ce qu'on jette un champi ? (o/n)");
+                    switch (Console.ReadLine())
+                    {
+                        case "o":
+                        case "O":
+                            jo.PopItem();
+                            jo.AddItem(mush);
+                            break;
+
+                        case "n":
+                        case "N":
+                            break;
+                    }
+                }
+                catch(EBagIsEmpty)
+                {
+                    Console.WriteLine("¯\\_(ツ)_/¯");
+                }
+                if (jo.GetBagCapacity() == jo.GetBagWeight())
+                {
+                    Console.WriteLine("*gagné ! le sac est plein, retour à la maison.");
+                    Thread.Sleep(1000);
+                    return;
+                }
+                Thread.Sleep(500);
+                Console.WriteLine("*petits pas petits pas* ...");
+                Thread.Sleep(1000);
             }
         }
     }

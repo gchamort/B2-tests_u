@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personnages", "personnages\personnages.csproj", "{074948EC-E031-47C8-A34D-3D6CAE309DD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "champi", "personnages\champi.csproj", "{074948EC-E031-47C8-A34D-3D6CAE309DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personnages.UnitTests", "personnages.UnitTests\personnages.UnitTests.csproj", "{34FCBF37-2348-4BC7-85E6-ED3DFC13FF69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "champi.UnitTests", "personnages.UnitTests\champi.UnitTests.csproj", "{34FCBF37-2348-4BC7-85E6-ED3DFC13FF69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

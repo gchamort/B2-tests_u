@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace personnages.Classes
+namespace champi.Exceptions
 {
-    public class Stuff //: IObservable ?
+    public class EBagIsEmpty : Exception
     {
-        public Stuff ()
+        public EBagIsEmpty()
         {
-            // ouais
+            Console.WriteLine("Ya R");
         }
     }
 }
