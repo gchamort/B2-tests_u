@@ -64,6 +64,7 @@ namespace champi
         {
             string view = "";
 
+            // itération à travers la stack pour récuper l'initialle de chaque champi comme aperçu
             foreach (IMushroom mush in bag)
             {
                 view += mush.GetLabel();

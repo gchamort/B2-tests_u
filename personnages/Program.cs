@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 using champi.Classes;
 using champi.Exceptions;
@@ -21,7 +17,7 @@ namespace champi
             Random rand = new Random();
 
             //loop tant que la class n'est pas valide
-            Picker jo = new Picker(rand.Next(12, 21));
+            Picker jo = new Picker(rand.Next(10, 15));
             Console.WriteLine("*Commence la balade* j'ai un sac pour " + jo.GetBagCapacity() + " kilos");
 
             IMushroom mush = null;
@@ -73,7 +69,7 @@ namespace champi
 
                         case "q":
                             Console.WriteLine("retour à la maison.");
-                            Thread.Sleep(1000);
+                            Thread.Sleep(1500);
                             return;
 
                         default:
@@ -84,6 +80,7 @@ namespace champi
                 // remontée des exceptions
                 catch (EBagIsFull)
                 {
+                    // si même en échangeant ça passe pas
                     if (jo.GetBagCapacity() - jo.GetLastMushWeight() + mush.GetWeight() > jo.GetBagCapacity())
                     {
                         Console.WriteLine("peu pô\n");
@@ -113,7 +110,7 @@ namespace champi
                 if (jo.GetBagCapacity() == jo.GetBagWeight())
                 {
                     Console.WriteLine("*gagné ! le sac est plein, retour à la maison.");
-                    Thread.Sleep(1000);
+                    Console.ReadKey();
                     return;
                 }
                 Thread.Sleep(500);

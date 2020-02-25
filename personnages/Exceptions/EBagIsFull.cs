@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace champi.Exceptions
 {
@@ -10,7 +6,7 @@ namespace champi.Exceptions
     {
         public EBagIsFull (string e)
         {
-            Console.WriteLine("Ya plus la place pour lô " + e);
+            Console.WriteLine("Nope, y a plus la place pour lô " + e);
         }
     }
 }
